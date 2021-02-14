@@ -24,6 +24,21 @@ namespace SmallHospitalDataBaseApp
             InitializeComponent();
         }
         
+        private void modify_address_button(object sender, RoutedEventArgs e)
+        {
+            // something
+        }
+
+        private void refresh_button(object sender, RoutedEventArgs e)
+        {
+            // something
+        }
+
+        private void delete_address_button(object sender, RoutedEventArgs e)
+        {
+            // something
+        }
+        
         private void cancel_button(object sender, RoutedEventArgs e)
         {
             this.Close();
