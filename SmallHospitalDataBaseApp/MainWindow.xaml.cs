@@ -24,9 +24,8 @@ namespace SmallHospitalDataBaseApp
         public MainWindow()
         {
             InitializeComponent();
-
-            DataContext = this;
         }
+        
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
         }
