@@ -23,5 +23,10 @@ namespace SmallHospitalDataBaseApp
         {
             InitializeComponent();
         }
+        
+        private void cancel_button(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
