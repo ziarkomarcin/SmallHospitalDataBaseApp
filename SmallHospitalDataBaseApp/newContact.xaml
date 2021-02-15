@@ -1,12 +1,51 @@
-﻿<Window x:Class="SmallHospitalDataBaseApp.newContact"
+<Window x:Class="SmallHospitalDataBaseApp.newContact"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmallHospitalDataBaseApp"
         mc:Ignorable="d"
-        Title="Contacts" Height="500" Width="800" Icon="icon2.png">
+        Title="Contacts => DataManager" Height="500" Width="800" Icon="icon2.png" Background="#FF525252">
     <Grid>
+        <Label Content="Contact&#xD;&#xA;Data&#xD;&#xA;" HorizontalAlignment="Left" Margin="70,10,0,0" VerticalAlignment="Top" Height="57" Width="115" FontSize="20" FontWeight="Bold" FontFamily="Consolas" Foreground="White"/>
+
+        <!--<DataGrid x:Name="contactDataGrid" HorizontalAlignment="Left" IsReadOnly="True" Height="469" VerticalAlignment="Top" Width="530"  CanUserResizeColumns="False" SelectionChanged="addressDataGrid_Selection" MinColumnWidth="17" Margin="262,0,0,0"/> -->
+        <Label Content="PHONE" HorizontalAlignment="Left" Height="25" Margin="2,100,0,0" VerticalAlignment="Top" Width="113" FontFamily="Consolas" FontSize="16" FontWeight="Bold" Background="{x:Null}" FontStyle="Italic" Foreground="White" />
+        <Label Content="E-MAIL" HorizontalAlignment="Left" Height="25" Margin="2,132,0,0" VerticalAlignment="Top" Width="113" FontFamily="Consolas" FontSize="16" FontWeight="Bold" Background="{x:Null}" FontStyle="Italic" Foreground="White"/>
+        <!--
+        <TextBox x:Name="contact_PhoneNumberTextBox" HorizontalAlignment="Left" Height="27" Margin="120,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="136" VerticalContentAlignment="Center" />
+        <TextBox x:Name="contact_EMailTextBox" HorizontalAlignment="Left" Height="27" Margin="120,132,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="136" VerticalContentAlignment="Center"/>
+
+
+        <Button x:Name="button_ModifyContact" Content="Modify"  Margin="120,180,536,249" Background="White" FontSize="14" FontFamily="Consolas" FontWeight="Bold" Click="modify_contact_button" Height="40">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button_Refresh" Content="Refresh" FontSize="14" Click="refresh_button" Margin="10,180,677,204" Background="White" FontFamily="Consolas" FontWeight="Bold">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button_DeleteContact" Content="Delete Contact" FontSize="14"  Click="delete_contact_button" Margin="120,225,536,204" RenderTransformOrigin="0.55,-0.278" Background="White" FontFamily="Consolas" FontWeight="Bold" Height="40">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+-->
+        <Button x:Name="button_Cancel" Content="Cancel"   FontSize="14" Click="cancel_button" Margin="10,422,677,10" Background="White" FontFamily="Consolas" FontWeight="Bold">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
         
     </Grid>
 </Window>
