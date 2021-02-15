@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,5 +23,26 @@ namespace SmallHospitalDataBaseApp
         {
             InitializeComponent();
         }
+
+        private void modify_contact_button(object sender, RoutedEventArgs e)
+        {
+            // something
+        }
+
+        private void refresh_button(object sender, RoutedEventArgs e)
+        {
+            // something
+        }
+
+        private void delete_contact_button(object sender, RoutedEventArgs e)
+        {
+            // something
+        }
+
+        private void cancel_button(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
     }
 }
