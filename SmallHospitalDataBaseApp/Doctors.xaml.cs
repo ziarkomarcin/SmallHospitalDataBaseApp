@@ -44,7 +44,7 @@ namespace SmallHospitalDataBaseApp
             //    doctorDataGrid.Columns[indexI].Visibility = Visibility.Collapsed;
 
             //}
-            //doctorDataGrid.Columns[6].Visibility = Visibility.Collapsed;
+            doctorDataGrid.Columns[5].Visibility = Visibility.Collapsed;
             //doctorDataGrid.Columns[7].Visibility = Visibility.Collapsed;
             //doctorDataGrid.Columns[8].Visibility = Visibility.Collapsed;
         }
