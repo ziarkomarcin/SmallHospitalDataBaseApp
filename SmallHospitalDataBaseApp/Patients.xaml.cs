@@ -39,6 +39,8 @@ namespace SmallHospitalDataBaseApp
             patientDataGrid.Columns[3].Header = "Admission Date";
             patientDataGrid.Columns[4].Header = "Discharge Date";
 
+            patientDataGrid.Columns[5].Visibility = Visibility.Collapsed;
+            
             //for (int indexI = 0; indexI > 5; indexI++)
             //{
             //    patientDataGrid.Columns[indexI].Visibility = Visibility.Collapsed;
