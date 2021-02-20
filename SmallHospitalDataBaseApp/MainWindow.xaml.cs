@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,33 +25,38 @@ namespace SmallHospitalDataBaseApp
         {
             InitializeComponent();
         }
-        
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
         }
 
-        private void employees_button(object sender, RoutedEventArgs e)
+        private void doctors_button(object sender, RoutedEventArgs e)
         {
-            newEmployee newEmployee = new newEmployee();
-            newEmployee.Show();
+            Doctors Doctors = new Doctors();
+            Doctors.Show();
         }
 
         private void patients_button(object sender, RoutedEventArgs e)
         {
-            newPatient newPatient = new newPatient();
-            newPatient.Show();
+            Patients Patients = new Patients();
+            Patients.Show();
         }
 
-        private void contacts_button(object sender, RoutedEventArgs e)
+        private void diagnosis_button(object sender, RoutedEventArgs e)
         {
-            newContact newContact = new newContact();
-            newContact.Show();
+            Diagnosis Diagnosis = new Diagnosis();
+            Diagnosis.Show();
         }
 
-        private void addresses_button(object sender, RoutedEventArgs e)
+        private void treatments_button(object sender, RoutedEventArgs e)
         {
-            newAddress newAddress = new newAddress();
-            newAddress.Show();
+            Treatments Treatments = new Treatments();
+            Treatments.Show();
+        }
+
+        private void visits_button(object sender, RoutedEventArgs e)
+        {
+            Visits Visits = new Visits();
+            Visits.Show();
         }
 
         private void exit_button(object sender, RoutedEventArgs e)
