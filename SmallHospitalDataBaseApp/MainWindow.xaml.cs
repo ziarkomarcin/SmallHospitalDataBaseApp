@@ -63,5 +63,12 @@ namespace SmallHospitalDataBaseApp
         {
             Application.Current.Shutdown();
         }
+
+        private void info_button(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show($@"INFORMATION FOR APP USERS!
+A doctor who is currently dismissed may admit patients for private visits," +
+                            " as some offices are rented by them.");
+        }
     }
 }
