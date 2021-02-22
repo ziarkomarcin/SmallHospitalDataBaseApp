@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +19,8 @@ namespace SmallHospitalDataBaseApp
     /// </summary>
     public partial class Diagnosis : Window
     {
+        DiagnosisService DiagnosisService = new DiagnosisService();
+
         public Diagnosis()
         {
             InitializeComponent();
@@ -47,11 +49,6 @@ namespace SmallHospitalDataBaseApp
             diagnosisDataGrid.Columns[5].Visibility = Visibility.Collapsed;
         }
 
-        private void update_contact_button(object sender, RoutedEventArgs e)
-        {
-            // something
-        }
-
         private void refresh_button(object sender, RoutedEventArgs e)
         {
             // something
@@ -70,6 +67,30 @@ namespace SmallHospitalDataBaseApp
         private void diagnosisDataGrid_Selection(object sender, SelectionChangedEventArgs e)
         {
             
+        }
+
+        private void add_diagnosis_button(object sender, RoutedEventArgs e)
+        {
+            
+
+            if (diagnosis_VisitIDTextBox.Text != "" && diagnosis_IllnessNameTextBox.Text != "" && diagnosis_DescriptionTextBox.Text != "")
+            {
+                string input = diagnosis_VisitIDTextBox.Text;
+                try
+                {
+                    int result = Int32.Parse(input);
+                    // Output: Unable to parse ''
+                    DiagnosisService.AddDiagnosis(result,
+                                                diagnosis_IllnessNameTextBox.Text,
+                                                diagnosis_DescriptionTextBox.Text);
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show($"Unable to parse '{input}'");
+                }
+                
+            }
+            else MessageBox.Show("...Visit ID, Illness Name & Description must be entered...");
         }
     }
 }
