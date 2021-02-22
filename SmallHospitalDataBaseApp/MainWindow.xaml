@@ -64,5 +64,12 @@
                 </Style>
             </Button.Resources>
         </Button>
+        <Button x:Name="button_info" Content="INFO" Margin="675,334,0,0" Width="100" Click="info_button" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Background="#FF00BDB5" FontFamily="Consolas">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
     </Grid>
 </Window>
