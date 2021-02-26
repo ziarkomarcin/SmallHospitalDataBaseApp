@@ -6,12 +6,27 @@ using System.Threading.Tasks;
 
 namespace SmallHospitalDataBaseApp
 {
-    class DoctorsClass
-    {
 
+
+    public class DoctorsClass
+    {
+        public int id { get; set; }
+        public string doctors_name { get; set; }
+        public string doctors_surname { get; set; }
+        public DateTime employment { get; set; }
+        public DateTime release { get; set; }
+
+       public DoctorsClass(doctors doctor)
+        {
+            id = doctor.doctor_id;
+            doctors_name = doctor.firstname;
+            doctors_surname = doctor.lastname;
+            employment = doctor.date_of_employment;
+            release = (DateTime)doctor.date_of_release;
+        }
     }
 
-    class DoctorsService
+    public class DoctorsService
     {
         MyHospitalDBEntities context = new MyHospitalDBEntities();
 
@@ -45,14 +60,28 @@ namespace SmallHospitalDataBaseApp
         }
 
         /// <param name="doctors_release_date">Date of Doctor's release</param>
-        public void AddRelease(DateTime doctors_release_date)
+        public void EditDoctor(doctors doctor, string doctor_name, string doctor_surname, DateTime employment, DateTime release)
         {
-            //doctors Doctor = new doctors()
-            //{
-            //    date_of_release = doctors_release_date,
-            //};
-            //context.doctors.Add(Doctor);
-            //context.SaveChanges();
+            if (doctor != null)
+            {
+                doctor.firstname = doctor_name;
+                doctor.lastname = doctor_surname;
+                doctor.date_of_employment = employment;
+                doctor.date_of_release = release;
+            }
+            context.SaveChanges();
+        }
+
+        public void RemoveDoctor(doctors doctor)
+        {
+            if (doctor != null) context.doctors.Remove(doctor);
+            context.SaveChanges();
+        }
+
+        public doctors SelectDoctorID(int doctorID)
+        {
+            var x = context.doctors.FirstOrDefault(y => y.doctor_id == doctorID);
+            return x;
         }
 
     }

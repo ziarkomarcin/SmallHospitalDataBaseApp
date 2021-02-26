@@ -8,7 +8,20 @@ namespace SmallHospitalDataBaseApp
 {
     class PatientClass
     {
-        //smth
+        public int id { get; set; }
+        public string firstname { get; set; }
+        public string lastname { get; set; }
+        public DateTime dateA { get; set; }
+        public DateTime dateD { get; set; }
+
+        public PatientClass(patients patient)
+        {
+            id = patient.patient_id;
+            firstname = patient.firstname;
+            lastname = patient.lastname;
+            dateA = (DateTime)patient.date_of_admission;
+            dateD = (DateTime)patient.date_of_discharge;
+        }
     }
 
     
@@ -45,5 +58,29 @@ namespace SmallHospitalDataBaseApp
             context.SaveChanges();
         }
 
+        public void RemovePatient(patients patient)
+        {
+            if (patient != null) context.patients.Remove(patient);
+            context.SaveChanges();
+
+        }
+
+        public patients SelectPatientID(int patientID)
+        {
+            var x = context.patients.FirstOrDefault(y => y.patient_id == patientID);
+            return x;
+        }
+
+        public void EditPatient(patients patient, string patient_name, string patient_surname, DateTime patient_dateA, DateTime patient_dateD)
+        {
+            if (patient != null)
+            {
+                patient.firstname = patient_name;
+                patient.lastname = patient_surname;
+                patient.date_of_admission = patient_dateA;
+                patient.date_of_discharge = patient_dateD;
+            }
+            context.SaveChanges();
+        }
     }
 }

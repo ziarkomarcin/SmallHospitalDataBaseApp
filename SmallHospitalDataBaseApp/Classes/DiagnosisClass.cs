@@ -8,7 +8,19 @@ namespace SmallHospitalDataBaseApp
 {
     class DiagnosisClass
     {
-        //smth
+
+        public int id { get; set; }
+        public int vis { get; set; }
+        public string illness { get; set; }
+        public string desc { get; set; }
+
+        public DiagnosisClass(diagnosis diagnose)
+        {
+            id = diagnose.diagnosis_id;
+            vis = diagnose.visit_id;
+            illness = diagnose.illness_name;
+            desc = diagnose.description;
+        }
     }
     class DiagnosisService
     {
@@ -41,9 +53,29 @@ namespace SmallHospitalDataBaseApp
             context.SaveChanges();
         }
 
-        public void EditDiagnosis(int diagnosis_id, int diagnosis_visit_id, string diagnosis_illness_name, string diagnosis_description)
+        public void RemoveDiagnose(diagnosis diagnose)
         {
-             
+            if (diagnose != null) context.diagnosis.Remove(diagnose);
+            context.SaveChanges();
+
+        }
+
+
+        public diagnosis SelectDiagID(int diagnosisID)
+        {
+            var x = context.diagnosis.FirstOrDefault(y => y.diagnosis_id == diagnosisID);
+            return x;
+        }
+
+        public void EditDiagnosis(diagnosis diagnose, int diagnosis_visit_id, string diagnosis_illness_name, string diagnosis_description)
+        {
+            if (diagnose != null)
+            {
+                diagnose.visit_id = diagnosis_visit_id;
+                diagnose.illness_name = diagnosis_illness_name;
+                diagnose.description = diagnosis_description;
+            }
+            context.SaveChanges();
         }
     }
 }
