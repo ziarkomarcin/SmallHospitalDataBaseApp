@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AppInstaller
+	Uri="file:///C:/Users/madzi/Installer/InstallerForApp.appinstaller"
+	Version="1.0.1.0" xmlns="http://schemas.microsoft.com/appx/appinstaller/2017/2">
+	<MainBundle
+		Name="02b0204e-9baf-4eec-888a-5517c35f88c7"
+		Version="1.0.1.0"
+		Publisher="CN=Marcin Ziarko"
+		Uri="file:///C:/Users/madzi/Installer/InstallerForApp_1.0.1.0_Debug_Test/InstallerForApp_1.0.1.0_AnyCPU_Debug.msixbundle" />
+	<UpdateSettings>
+		<OnLaunch
+			HoursBetweenUpdateChecks="24" />
+	</UpdateSettings>
+</AppInstaller>
