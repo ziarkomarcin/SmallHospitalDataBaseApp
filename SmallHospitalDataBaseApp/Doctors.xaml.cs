@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -42,13 +42,8 @@ namespace SmallHospitalDataBaseApp
             doctorDataGrid.Columns[3].Header = "Employment Date";
             doctorDataGrid.Columns[4].Header = "Release Date";
 
-            doctorDataGrid.Columns[4].Visibility = Visibility.Collapsed;
+            //doctorDataGrid.Columns[4].Visibility = Visibility.Collapsed;
             doctorDataGrid.Columns[5].Visibility = Visibility.Collapsed;
-        }
-
-        private void refresh_button(object sender, RoutedEventArgs e)
-        {
-            // something
         }
 
         private void cancel_button(object sender, RoutedEventArgs e)
@@ -56,51 +51,71 @@ namespace SmallHospitalDataBaseApp
             this.Close();
         }
 
-        private void doctorDataGrid_Selection(object sender, SelectionChangedEventArgs e)
+        private int doctorID = 0;
+        private void doctorDataGrid_SEL(object sender, SelectionChangedEventArgs e)
         {
-            //something
+            doctors d = this.doctorDataGrid.SelectedItem as doctors;
+            if (d is null)
+            {
+                this.doctor_EditNameTextBox.Text = string.Empty.ToString();
+                this.doctor_EditSurnameTextBox.Text = string.Empty.ToString();
+                this.doctor_EditEmploymentTextBox.Text = string.Empty;
+                this.doctor_ReleaseTextBox.Text = string.Empty;
+                return;
+            }
+            this.doctor_EditNameTextBox.Text = d.firstname.ToString();
+            this.doctor_EditSurnameTextBox.Text = d.lastname.ToString();
+            this.doctor_EditEmploymentTextBox.Text = d.date_of_employment.ToString();
+            this.doctor_ReleaseTextBox.Text = d.date_of_release.ToString();
+            var txt = this.doctorID = d.doctor_id;
+            this.doctor_idTextBox.Text = txt.ToString();
         }
-
         private void add_doctor_button(object sender, RoutedEventArgs e)
         {
             string employmentInput = doctor_EmploymentTextBox.Text;
             DateTime.TryParseExact(employmentInput, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out DateTime a);
-           
-
-            //string releaseInput = doctor_EmploymentTextBox.Text;
-            //DateTime.TryParseExact(releaseInput, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out DateTime b);
-           
 
             if (doctor_NameTextBox.Text != "" && doctor_SurnameTextBox.Text != "" && employmentInput != "")
             {
-
-                //DateTime employDate;
-                //bool employResult = DateTime.TryParse(doctor_EmploymentTextBox.Text, out employDate);
-                //if (!employResult)
-                //{
-                //    MessageBox.Show("Date is written with numbers (YYYY-MM-DD)");
-                //    return;
-                //}
-                //DateTime relDate;
-                //bool relResult = DateTime.TryParse(doctor_ReleaseTextBox.Text, out relDate);
-                //if (!relResult)
-                //{
-                //    MessageBox.Show("Date is written with numbers (YYYY-MM-DD)");
-                //    return;
-                //}
-
                 DoctorsService.AddDoctor(doctor_NameTextBox.Text,
                                          doctor_SurnameTextBox.Text,
-                                         a
-                                         /*b*/);
-
-                //ReloadList();
+                                         a);
+                Refresh();
             }
             else MessageBox.Show("...Name, Surname & Employment Date must be entered...");
+
         }
 
-        private void delete_doctor_button(object sender, RoutedEventArgs e)
+        private void Refresh()
         {
+            Doctors newWindow = new Doctors();
+            Application.Current.MainWindow = newWindow;
+            newWindow.Show();
+            this.Close();
+        }
+
+        private void edit_button(object sender, RoutedEventArgs e)
+        {
+            if (doctor_EditNameTextBox.Text != "" && doctor_EditSurnameTextBox.Text != "" && doctor_EditEmploymentTextBox.Text != "")
+            {
+                string date = doctor_EditEmploymentTextBox.Text;
+                DateTime.TryParseExact(date, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out DateTime newDate);
+
+                string date2 = doctor_ReleaseTextBox.Text;
+                DateTime.TryParseExact(date2, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out DateTime newDate2);
+
+
+                var doctor = DoctorsService.SelectDoctorID(doctorID);
+
+                string name = doctor_EditNameTextBox.Text.ToString().Trim();
+
+                string pat = doctor_EditSurnameTextBox.Text.ToString().Trim();
+
+                DoctorsService.EditDoctor(doctor, name, pat, newDate, newDate2);
+                Refresh();
+
+            }
+            else MessageBox.Show("All fields must be filled");
         }
     }
 }

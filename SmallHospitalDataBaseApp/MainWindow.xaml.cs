@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +27,7 @@ namespace SmallHospitalDataBaseApp
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+
         }
 
         private void doctors_button(object sender, RoutedEventArgs e)
@@ -47,12 +48,6 @@ namespace SmallHospitalDataBaseApp
             Diagnosis.Show();
         }
 
-        private void treatments_button(object sender, RoutedEventArgs e)
-        {
-            Treatments Treatments = new Treatments();
-            Treatments.Show();
-        }
-
         private void visits_button(object sender, RoutedEventArgs e)
         {
             Visits Visits = new Visits();
@@ -67,8 +62,11 @@ namespace SmallHospitalDataBaseApp
         private void info_button(object sender, RoutedEventArgs e)
         {
             MessageBox.Show($@"INFORMATION FOR APP USERS!
-A doctor who is currently dismissed may admit patients for private visits," +
-                            " as some offices are rented by them.");
+Doctors who are currently dismissed may admit patients for private visits," +
+                            " as some offices are rented by them." +
+                            $@"
+
+The removal of doctors is not possible due to the above-mentioned information.");
         }
     }
 }

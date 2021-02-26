@@ -1,4 +1,4 @@
-<Window x:Class="SmallHospitalDataBaseApp.Diagnosis"
+﻿<Window x:Class="SmallHospitalDataBaseApp.Diagnosis"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -9,17 +9,16 @@
         WindowStartupLocation="CenterScreen"
         Title="Diagnosis => DataManager" Height="500" Width="800" Icon="Assets/icon2.png" Background="#FF525252" Loaded="Window_Loaded">
     <Grid>
-        <Label Content="Diagnosis&#xD;&#xA;Data&#xD;&#xA;" HorizontalAlignment="Left" Margin="70,10,0,0" VerticalAlignment="Top" Height="57" Width="115" FontSize="20" FontWeight="Bold" FontFamily="Consolas" Foreground="White"/>
 
-        <DataGrid x:Name="diagnosisDataGrid" HorizontalAlignment="Left" IsReadOnly="True" Height="469" VerticalAlignment="Top" Width="530"  CanUserResizeColumns="False" SelectionChanged="diagnosisDataGrid_Selection" MinColumnWidth="17" Margin="262,0,0,0"/>
-        <Label Content="VISIT ID" HorizontalAlignment="Left" Height="25" Margin="2,100,0,0" VerticalAlignment="Top" Width="113" FontFamily="Consolas" FontSize="16" FontWeight="Bold" Background="{x:Null}" FontStyle="Italic" Foreground="White" />
-        <Label Content="ILLNESS" HorizontalAlignment="Left" Height="25" Margin="2,132,0,0" VerticalAlignment="Top" Width="113" FontFamily="Consolas" FontSize="16" FontWeight="Bold" Background="{x:Null}" FontStyle="Italic" Foreground="White"/>
-        
-        <TextBox x:Name="diagnosis_VisitIDTextBox" HorizontalAlignment="Left" Height="27" Margin="120,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="136" VerticalContentAlignment="Center" />
-        <TextBox x:Name="diagnosis_IllnessNameTextBox" HorizontalAlignment="Left" Height="27" Margin="120,132,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="136" VerticalContentAlignment="Center"/>
+        <DataGrid x:Name="diagnosisDataGrid" HorizontalAlignment="Left" IsReadOnly="True" Height="321" VerticalAlignment="Top" Width="530"  CanUserResizeColumns="False" SelectionChanged="diagnosisDataGrid_Selection" MinColumnWidth="17" Margin="10,10,0,0"/>
+        <Label Content="VISIT ID" HorizontalAlignment="Left" Height="30" Margin="545,15,0,0" VerticalAlignment="Top" Width="98" FontFamily="Consolas" FontSize="18" FontWeight="Bold" Background="{x:Null}" FontStyle="Italic" Foreground="White" />
+        <Label Content="ILLNESS" HorizontalAlignment="Left" Height="30" Margin="545,45,0,0" VerticalAlignment="Top" Width="97" FontFamily="Consolas" FontSize="18" FontWeight="Bold" Background="{x:Null}" FontStyle="Italic" Foreground="White"/>
+
+        <TextBox x:Name="diagnosis_VisitIDTextBox" HorizontalAlignment="Left" Height="27" Margin="647,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="136" VerticalContentAlignment="Center" />
+        <TextBox x:Name="diagnosis_IllnessNameTextBox" HorizontalAlignment="Left" Height="27" Margin="647,45,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="136" VerticalContentAlignment="Center"/>
 
 
-        <Button x:Name="button_AddDiagnosis" Content="Add"  Margin="124,250,532,181" Background="White" FontSize="14" FontFamily="Consolas" FontWeight="Bold" Click="add_diagnosis_button" Height="40">
+        <Button x:Name="button_AddDiagnosis" Content="Add"  Margin="645,109,11,322" Background="White" FontSize="14" FontFamily="Consolas" FontWeight="Bold" Click="add_diagnosis_button" RenderTransformOrigin="0.528,-1.837">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="5"/>
@@ -41,14 +40,37 @@
             </Button.Resources>
         </Button>
 -->
-        <Button x:Name="button_Cancel" Content="Cancel"   FontSize="14" Click="cancel_button" Margin="10,422,677,10" Background="White" FontFamily="Consolas" FontWeight="Bold">
+        <Button x:Name="button_Cancel" Content="Cancel"   FontSize="14" Click="cancel_button" Margin="10,422,677,10" Background="White" FontFamily="Consolas" FontWeight="Bold" RenderTransformOrigin="0.528,-1.837">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <TextBox x:Name="diagnosis_DescriptionTextBox" HorizontalAlignment="Left" Height="27" Margin="121,164,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="136" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="diagnosis_DescriptionTextBox" HorizontalAlignment="Left" Height="27" Margin="648,77,0,0" Text="" VerticalAlignment="Top" Width="136" VerticalContentAlignment="Center"/>
+        <Label Content="DESCR." HorizontalAlignment="Left" Height="30" Margin="545,77,0,0" VerticalAlignment="Top" Width="97" FontFamily="Consolas" FontSize="18" FontWeight="Bold" Background="{x:Null}" FontStyle="Italic" Foreground="White"/>
+        <Label Content="VISIT ID" HorizontalAlignment="Left" Height="30" Margin="543,242,0,0" VerticalAlignment="Top" Width="98" FontFamily="Consolas" FontSize="18" FontWeight="Bold" Background="{x:Null}" FontStyle="Italic" Foreground="White" />
+        <Label Content="ILLNESS" HorizontalAlignment="Left" Height="30" Margin="545,272,0,0" VerticalAlignment="Top" Width="97" FontFamily="Consolas" FontSize="18" FontWeight="Bold" Background="{x:Null}" FontStyle="Italic" Foreground="White"/>
+        <TextBox x:Name="diagnosis_VisitIDTextBox_Copy" HorizontalAlignment="Left" Height="27" Margin="645,240,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="136" VerticalContentAlignment="Center" />
+        <TextBox x:Name="diagnosis_IllnessNameTextBox_Copy" HorizontalAlignment="Left" Height="27" Margin="647,272,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="136" VerticalContentAlignment="Center"/>
+        <Button x:Name="button_AddDiagnosis_Copy" Content="Edit"  Margin="645,336,11,95" Background="White" FontSize="14" FontFamily="Consolas" FontWeight="Bold" Click="edit_diagnosis_button" RenderTransformOrigin="0.528,-1.837">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <TextBox x:Name="diagnosis_DescriptionTextBox_Copy" HorizontalAlignment="Left" Height="27" Margin="648,304,0,0" Text="" VerticalAlignment="Top" Width="136" VerticalContentAlignment="Center"/>
+        <Label Content="DESCR." HorizontalAlignment="Left" Height="30" Margin="545,304,0,0" VerticalAlignment="Top" Width="97" FontFamily="Consolas" FontSize="18" FontWeight="Bold" Background="{x:Null}" FontStyle="Italic" Foreground="White"/>
+        <Label Content="DIAG ID" HorizontalAlignment="Left" Height="30" Margin="543,210,0,0" VerticalAlignment="Top" Width="98" FontFamily="Consolas" FontSize="18" FontWeight="Bold" Background="{x:Null}" FontStyle="Italic" Foreground="White" />
+        <TextBox x:Name="diagnosis_IDTextBox" HorizontalAlignment="Left" Height="27" Margin="645,208,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="136" VerticalContentAlignment="Center" />
+        <Button x:Name="button_delete" Content="Delete"  Margin="643,381,13,50" Background="White" FontSize="14" FontFamily="Consolas" FontWeight="Bold" Click="del_diagnosis_button" RenderTransformOrigin="0.528,-1.837">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
 
     </Grid>
 </Window>
