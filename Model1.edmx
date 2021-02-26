@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MyHospitalDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="diagnosis">
+          <Key>
+            <PropertyRef Name="diagnosis_id" />
+          </Key>
+          <Property Name="diagnosis_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="visit_id" Type="int" Nullable="false" />
+          <Property Name="illness_name" Type="varchar" MaxLength="30" />
+          <Property Name="description" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="doctors">
+          <Key>
+            <PropertyRef Name="doctor_id" />
+          </Key>
+          <Property Name="doctor_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstname" Type="varchar" MaxLength="30" />
+          <Property Name="lastname" Type="varchar" MaxLength="30" />
+          <Property Name="date_of_employment" Type="date" Nullable="false" />
+          <Property Name="date_of_release" Type="date" />
+        </EntityType>
+        <EntityType Name="patients">
+          <Key>
+            <PropertyRef Name="patient_id" />
+          </Key>
+          <Property Name="patient_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstname" Type="varchar" MaxLength="30" />
+          <Property Name="lastname" Type="varchar" MaxLength="30" />
+          <Property Name="date_of_admission" Type="date" Nullable="false" />
+          <Property Name="date_of_discharge" Type="date" />
+        </EntityType>
+        <EntityType Name="treatments">
+          <Key>
+            <PropertyRef Name="treatment_id" />
+          </Key>
+          <Property Name="treatment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="treat_name" Type="varchar" MaxLength="30" />
+          <Property Name="diagnosis_id" Type="int" Nullable="false" />
+          <Property Name="treatment_date" Type="date" Nullable="false" />
+          <Property Name="treat_description" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="visits">
+          <Key>
+            <PropertyRef Name="visit_id" />
+          </Key>
+          <Property Name="visit_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="doctor_id" Type="int" Nullable="false" />
+          <Property Name="patient_id" Type="int" Nullable="false" />
+          <Property Name="date_of_visit" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__diagnosis__visit__2B3F6F97">
+          <End Role="visits" Type="Self.visits" Multiplicity="1" />
+          <End Role="diagnosis" Type="Self.diagnosis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="visits">
+              <PropertyRef Name="visit_id" />
+            </Principal>
+            <Dependent Role="diagnosis">
+              <PropertyRef Name="visit_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__treatment__diagn__2E1BDC42">
+          <End Role="diagnosis" Type="Self.diagnosis" Multiplicity="1" />
+          <End Role="treatments" Type="Self.treatments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="diagnosis">
+              <PropertyRef Name="diagnosis_id" />
+            </Principal>
+            <Dependent Role="treatments">
+              <PropertyRef Name="diagnosis_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__visits__doctor_i__276EDEB3">
+          <End Role="doctors" Type="Self.doctors" Multiplicity="1" />
+          <End Role="visits" Type="Self.visits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doctors">
+              <PropertyRef Name="doctor_id" />
+            </Principal>
+            <Dependent Role="visits">
+              <PropertyRef Name="doctor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__visits__patient___286302EC">
+          <End Role="patients" Type="Self.patients" Multiplicity="1" />
+          <End Role="visits" Type="Self.visits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="patients">
+              <PropertyRef Name="patient_id" />
+            </Principal>
+            <Dependent Role="visits">
+              <PropertyRef Name="patient_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MyHospitalDBModelStoreContainer">
+          <EntitySet Name="diagnosis" EntityType="Self.diagnosis" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="doctors" EntityType="Self.doctors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="patients" EntityType="Self.patients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="treatments" EntityType="Self.treatments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="visits" EntityType="Self.visits" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__diagnosis__visit__2B3F6F97" Association="Self.FK__diagnosis__visit__2B3F6F97">
+            <End Role="visits" EntitySet="visits" />
+            <End Role="diagnosis" EntitySet="diagnosis" />
+          </AssociationSet>
+          <AssociationSet Name="FK__treatment__diagn__2E1BDC42" Association="Self.FK__treatment__diagn__2E1BDC42">
+            <End Role="diagnosis" EntitySet="diagnosis" />
+            <End Role="treatments" EntitySet="treatments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__visits__doctor_i__276EDEB3" Association="Self.FK__visits__doctor_i__276EDEB3">
+            <End Role="doctors" EntitySet="doctors" />
+            <End Role="visits" EntitySet="visits" />
+          </AssociationSet>
+          <AssociationSet Name="FK__visits__patient___286302EC" Association="Self.FK__visits__patient___286302EC">
+            <End Role="patients" EntitySet="patients" />
+            <End Role="visits" EntitySet="visits" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MyHospitalDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="diagnosis">
+          <Key>
+            <PropertyRef Name="diagnosis_id" />
+          </Key>
+          <Property Name="diagnosis_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="visit_id" Type="Int32" Nullable="false" />
+          <Property Name="illness_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="visits" Relationship="Self.FK__diagnosis__visit__2B3F6F97" FromRole="diagnosis" ToRole="visits" />
+          <NavigationProperty Name="treatments" Relationship="Self.FK__treatment__diagn__2E1BDC42" FromRole="diagnosis" ToRole="treatments" />
+        </EntityType>
+        <EntityType Name="doctors">
+          <Key>
+            <PropertyRef Name="doctor_id" />
+          </Key>
+          <Property Name="doctor_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="lastname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="date_of_employment" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="date_of_release" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="visits" Relationship="Self.FK__visits__doctor_i__276EDEB3" FromRole="doctors" ToRole="visits" />
+        </EntityType>
+        <EntityType Name="patients">
+          <Key>
+            <PropertyRef Name="patient_id" />
+          </Key>
+          <Property Name="patient_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="lastname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="date_of_admission" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="date_of_discharge" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="visits" Relationship="Self.FK__visits__patient___286302EC" FromRole="patients" ToRole="visits" />
+        </EntityType>
+        <EntityType Name="treatments">
+          <Key>
+            <PropertyRef Name="treatment_id" />
+          </Key>
+          <Property Name="treatment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="treat_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="diagnosis_id" Type="Int32" Nullable="false" />
+          <Property Name="treatment_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="treat_description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="diagnosis" Relationship="Self.FK__treatment__diagn__2E1BDC42" FromRole="treatments" ToRole="diagnosis" />
+        </EntityType>
+        <EntityType Name="visits">
+          <Key>
+            <PropertyRef Name="visit_id" />
+          </Key>
+          <Property Name="visit_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="doctor_id" Type="Int32" Nullable="false" />
+          <Property Name="patient_id" Type="Int32" Nullable="false" />
+          <Property Name="date_of_visit" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="diagnosis" Relationship="Self.FK__diagnosis__visit__2B3F6F97" FromRole="visits" ToRole="diagnosis" />
+          <NavigationProperty Name="doctors" Relationship="Self.FK__visits__doctor_i__276EDEB3" FromRole="visits" ToRole="doctors" />
+          <NavigationProperty Name="patients" Relationship="Self.FK__visits__patient___286302EC" FromRole="visits" ToRole="patients" />
+        </EntityType>
+        <Association Name="FK__diagnosis__visit__2B3F6F97">
+          <End Role="visits" Type="Self.visits" Multiplicity="1" />
+          <End Role="diagnosis" Type="Self.diagnosis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="visits">
+              <PropertyRef Name="visit_id" />
+            </Principal>
+            <Dependent Role="diagnosis">
+              <PropertyRef Name="visit_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__treatment__diagn__2E1BDC42">
+          <End Role="diagnosis" Type="Self.diagnosis" Multiplicity="1" />
+          <End Role="treatments" Type="Self.treatments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="diagnosis">
+              <PropertyRef Name="diagnosis_id" />
+            </Principal>
+            <Dependent Role="treatments">
+              <PropertyRef Name="diagnosis_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__visits__doctor_i__276EDEB3">
+          <End Role="doctors" Type="Self.doctors" Multiplicity="1" />
+          <End Role="visits" Type="Self.visits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doctors">
+              <PropertyRef Name="doctor_id" />
+            </Principal>
+            <Dependent Role="visits">
+              <PropertyRef Name="doctor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__visits__patient___286302EC">
+          <End Role="patients" Type="Self.patients" Multiplicity="1" />
+          <End Role="visits" Type="Self.visits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="patients">
+              <PropertyRef Name="patient_id" />
+            </Principal>
+            <Dependent Role="visits">
+              <PropertyRef Name="patient_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MyHospitalDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="diagnosis" EntityType="Self.diagnosis" />
+          <EntitySet Name="doctors" EntityType="Self.doctors" />
+          <EntitySet Name="patients" EntityType="Self.patients" />
+          <EntitySet Name="treatments" EntityType="Self.treatments" />
+          <EntitySet Name="visits" EntityType="Self.visits" />
+          <AssociationSet Name="FK__diagnosis__visit__2B3F6F97" Association="Self.FK__diagnosis__visit__2B3F6F97">
+            <End Role="visits" EntitySet="visits" />
+            <End Role="diagnosis" EntitySet="diagnosis" />
+          </AssociationSet>
+          <AssociationSet Name="FK__treatment__diagn__2E1BDC42" Association="Self.FK__treatment__diagn__2E1BDC42">
+            <End Role="diagnosis" EntitySet="diagnosis" />
+            <End Role="treatments" EntitySet="treatments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__visits__doctor_i__276EDEB3" Association="Self.FK__visits__doctor_i__276EDEB3">
+            <End Role="doctors" EntitySet="doctors" />
+            <End Role="visits" EntitySet="visits" />
+          </AssociationSet>
+          <AssociationSet Name="FK__visits__patient___286302EC" Association="Self.FK__visits__patient___286302EC">
+            <End Role="patients" EntitySet="patients" />
+            <End Role="visits" EntitySet="visits" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MyHospitalDBModelStoreContainer" CdmEntityContainer="MyHospitalDBEntities">
+          <EntitySetMapping Name="diagnosis">
+            <EntityTypeMapping TypeName="MyHospitalDBModel.diagnosis">
+              <MappingFragment StoreEntitySet="diagnosis">
+                <ScalarProperty Name="diagnosis_id" ColumnName="diagnosis_id" />
+                <ScalarProperty Name="visit_id" ColumnName="visit_id" />
+                <ScalarProperty Name="illness_name" ColumnName="illness_name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="doctors">
+            <EntityTypeMapping TypeName="MyHospitalDBModel.doctors">
+              <MappingFragment StoreEntitySet="doctors">
+                <ScalarProperty Name="doctor_id" ColumnName="doctor_id" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="date_of_employment" ColumnName="date_of_employment" />
+                <ScalarProperty Name="date_of_release" ColumnName="date_of_release" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="patients">
+            <EntityTypeMapping TypeName="MyHospitalDBModel.patients">
+              <MappingFragment StoreEntitySet="patients">
+                <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="date_of_admission" ColumnName="date_of_admission" />
+                <ScalarProperty Name="date_of_discharge" ColumnName="date_of_discharge" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="treatments">
+            <EntityTypeMapping TypeName="MyHospitalDBModel.treatments">
+              <MappingFragment StoreEntitySet="treatments">
+                <ScalarProperty Name="treatment_id" ColumnName="treatment_id" />
+                <ScalarProperty Name="treat_name" ColumnName="treat_name" />
+                <ScalarProperty Name="diagnosis_id" ColumnName="diagnosis_id" />
+                <ScalarProperty Name="treatment_date" ColumnName="treatment_date" />
+                <ScalarProperty Name="treat_description" ColumnName="treat_description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="visits">
+            <EntityTypeMapping TypeName="MyHospitalDBModel.visits">
+              <MappingFragment StoreEntitySet="visits">
+                <ScalarProperty Name="visit_id" ColumnName="visit_id" />
+                <ScalarProperty Name="doctor_id" ColumnName="doctor_id" />
+                <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+                <ScalarProperty Name="date_of_visit" ColumnName="date_of_visit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
